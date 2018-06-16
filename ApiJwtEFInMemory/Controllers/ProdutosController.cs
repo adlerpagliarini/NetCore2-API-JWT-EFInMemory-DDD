@@ -2,9 +2,11 @@
 using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
 using ApiJwtEFInMemory.DDD.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiJwtEFInMemory.Controllers
 {
+    [Authorize("Bearer")]
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class ProdutosController : Controller

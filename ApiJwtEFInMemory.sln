@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiJwtEFInMemory", "ApiJwtEFInMemory\ApiJwtEFInMemory.csproj", "{CAAAA0E7-F7AC-48FF-BD51-9E4F59E8D353}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiJwtEFInMemory", "ApiJwtEFInMemory\ApiJwtEFInMemory.csproj", "{CAAAA0E7-F7AC-48FF-BD51-9E4F59E8D353}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumingApiJwt", "ConsumingApiJwt\ConsumingApiJwt.csproj", "{1D256F52-0528-4521-A55B-B7B382174A02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CAAAA0E7-F7AC-48FF-BD51-9E4F59E8D353}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAAAA0E7-F7AC-48FF-BD51-9E4F59E8D353}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAAAA0E7-F7AC-48FF-BD51-9E4F59E8D353}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D256F52-0528-4521-A55B-B7B382174A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D256F52-0528-4521-A55B-B7B382174A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D256F52-0528-4521-A55B-B7B382174A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D256F52-0528-4521-A55B-B7B382174A02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
