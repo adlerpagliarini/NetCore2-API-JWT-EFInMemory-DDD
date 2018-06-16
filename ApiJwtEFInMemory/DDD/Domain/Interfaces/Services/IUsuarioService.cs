@@ -4,7 +4,7 @@ namespace ApiJwtEFInMemory.DDD.Domain.Interfaces.Services
 {
     public interface IUsuarioService : IServiceBase<Usuario>
     {
-        bool Remove(string id, Usuario usuario);
+        new bool Remove(Usuario usuario);
         Usuario GetById(string id);
     }
 }

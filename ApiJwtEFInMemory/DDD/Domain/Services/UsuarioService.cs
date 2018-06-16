@@ -18,14 +18,16 @@ namespace ApiJwtEFInMemory.DDD.Domain.Services
             return _usuarioRepository.GetById(id);
         }
 
-        public bool Remove(string id, Usuario usuario)
+        public new bool Remove(Usuario usuario)
         {
-            var u = _usuarioRepository.GetById(id);
+            var u = _usuarioRepository.GetById(usuario.ID);
             //var teste = Comparer.Compare<Usuario>(u, usuario);
+
             if (!(u is null) && u.Equals(usuario))
-                _usuarioRepository.Remove(u);
+                base.Remove(u);
             else
                 return false;
+
             return true;
         }
 

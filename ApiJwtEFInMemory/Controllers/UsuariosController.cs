@@ -44,7 +44,7 @@ namespace ApiJwtEFInMemory.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] string id,[FromBody] Usuario usuario)
         {
-            if (_usuarioService.Remove(id, usuario))
+            if (id == usuario.ID && _usuarioService.Remove(usuario))
                 return Ok();
             else
                 return NotFound();
