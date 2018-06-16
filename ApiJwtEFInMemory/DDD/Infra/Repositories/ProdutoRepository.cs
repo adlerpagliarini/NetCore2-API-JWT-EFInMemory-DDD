@@ -1,12 +1,10 @@
-﻿using ApiJwtEFInMemory.Domain.Interfaces.Repositories;
-using ApiJwtEFInMemory.Domain.Models;
-using ApiJwtEFInMemory.Infra.Context;
-using System;
+﻿using ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories;
+using ApiJwtEFInMemory.DDD.Domain.Entities;
+using ApiJwtEFInMemory.DDD.Infra.Context;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace ApiJwtEFInMemory.Infra.Repositories
+namespace ApiJwtEFInMemory.DDD.Infra.Repositories
 {
     public class ProdutoRepository : RepositoryBase<Produto>, IProdutoRepository
     {

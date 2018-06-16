@@ -1,12 +1,11 @@
-﻿using ApiJwtEFInMemory.Domain.Interfaces.Repositories;
-using ApiJwtEFInMemory.Infra.Context;
+﻿using ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories;
+using ApiJwtEFInMemory.DDD.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace ApiJwtEFInMemory.Infra.Repositories
+namespace ApiJwtEFInMemory.DDD.Infra.Repositories
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {

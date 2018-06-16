@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace ApiJwtEFInMemory.Domain.Interfaces.Services
+namespace ApiJwtEFInMemory.DDD.Domain.Interfaces.Services
 {
     public interface IServiceBase<TEntity> where TEntity : class
     {

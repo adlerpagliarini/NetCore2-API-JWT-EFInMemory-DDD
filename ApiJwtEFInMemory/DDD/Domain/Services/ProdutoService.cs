@@ -1,10 +1,10 @@
-﻿using ApiJwtEFInMemory.Domain.Interfaces.Repositories;
-using ApiJwtEFInMemory.Domain.Interfaces.Services;
-using ApiJwtEFInMemory.Domain.Models;
+﻿using ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
+using ApiJwtEFInMemory.DDD.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ApiJwtEFInMemory.Domain.Services
+namespace ApiJwtEFInMemory.DDD.Domain.Services
 {
     public class ProdutoService : ServiceBase<Produto>, IProdutoService
     {

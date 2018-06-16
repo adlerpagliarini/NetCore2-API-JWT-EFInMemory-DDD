@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ApiJwtEFInMemory.Domain.Interfaces.Services;
-using ApiJwtEFInMemory.Domain.Models;
-using ApiJwtEFInMemory.Infra.Context;
+﻿using System.Collections.Generic;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
+using ApiJwtEFInMemory.DDD.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiJwtEFInMemory.Controllers

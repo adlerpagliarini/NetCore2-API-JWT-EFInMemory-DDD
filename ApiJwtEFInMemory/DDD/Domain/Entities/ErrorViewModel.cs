@@ -1,4 +1,3 @@
-
 namespace ApiJwtEFInMemory.Models
 {
     public class ErrorViewModel

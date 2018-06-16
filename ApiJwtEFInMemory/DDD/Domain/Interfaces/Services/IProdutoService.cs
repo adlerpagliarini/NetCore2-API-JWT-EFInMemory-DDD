@@ -1,8 +1,7 @@
-﻿
-using ApiJwtEFInMemory.Domain.Models;
+﻿using ApiJwtEFInMemory.DDD.Domain.Entities;
 using System.Collections.Generic;
 
-namespace ApiJwtEFInMemory.Domain.Interfaces.Services
+namespace ApiJwtEFInMemory.DDD.Domain.Interfaces.Services
 {
     public interface IProdutoService : IServiceBase<Produto>
     {

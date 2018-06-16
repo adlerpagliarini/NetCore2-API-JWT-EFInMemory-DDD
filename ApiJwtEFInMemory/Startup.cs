@@ -1,8 +1,12 @@
-﻿using ApiJwtEFInMemory.Domain.Interfaces.Repositories;
-using ApiJwtEFInMemory.Domain.Interfaces.Services;
-using ApiJwtEFInMemory.Domain.Services;
-using ApiJwtEFInMemory.Infra.Context;
-using ApiJwtEFInMemory.Infra.Repositories;
+﻿using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
+using ApiJwtEFInMemory.DDD.Domain.Services;
+using ApiJwtEFInMemory.DDD.Infra.Repositories;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
+using ApiJwtEFInMemory.DDD.Domain.Entities;
+using ApiJwtEFInMemory.DDD.Domain.Services;
+using ApiJwtEFInMemory.DDD.Infra.Context;
+using ApiJwtEFInMemory.DDD.Infra.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,19 +29,23 @@ namespace ApiJwtEFInMemory
         {
             services.AddDbContext<DataContext>(options =>
                 options.UseInMemoryDatabase("InMemoryDatabase"));
+
             services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
 
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
-            //services.AddScoped<UsuarioService>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IUsuarioService usrService)
         {
+            usrService.Add(new Usuario() { ID = "admin", ChaveAcesso = "admin01" });
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();

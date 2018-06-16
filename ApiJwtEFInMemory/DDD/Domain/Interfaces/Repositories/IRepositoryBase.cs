@@ -1,7 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ApiJwtEFInMemory.Domain.Interfaces.Repositories
+namespace ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories
 {
     public interface IRepositoryBase<TEntity> where TEntity : class
     {

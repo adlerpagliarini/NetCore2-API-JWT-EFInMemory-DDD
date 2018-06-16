@@ -1,7 +1,7 @@
-﻿using ApiJwtEFInMemory.Domain.Models;
+﻿using ApiJwtEFInMemory.DDD.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiJwtEFInMemory.Infra.Context
+namespace ApiJwtEFInMemory.DDD.Infra.Context
 {
     public class DataContext : DbContext
     {

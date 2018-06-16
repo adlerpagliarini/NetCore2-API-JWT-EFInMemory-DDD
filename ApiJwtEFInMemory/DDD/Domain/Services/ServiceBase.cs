@@ -1,9 +1,9 @@
-﻿using ApiJwtEFInMemory.Domain.Interfaces.Repositories;
-using ApiJwtEFInMemory.Domain.Interfaces.Services;
+﻿using ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 
-namespace ApiJwtEFInMemory.Domain.Services
+namespace ApiJwtEFInMemory.DDD.Domain.Services
 {
     public class ServiceBase<TEntity> : IDisposable, IServiceBase<TEntity> where TEntity : class
     {

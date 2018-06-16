@@ -1,5 +1,4 @@
-﻿
-namespace ApiJwtEFInMemory.Domain.Models
+﻿namespace ApiJwtEFInMemory.DDD.Domain.Entities
 {
     public class Produto
     {
