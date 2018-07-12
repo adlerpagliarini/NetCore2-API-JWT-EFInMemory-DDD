@@ -2,6 +2,8 @@
 using ApiJwtEFInMemory.DDD.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces;
 
 namespace ApiJwtEFInMemory.Controllers
 {
@@ -15,6 +17,12 @@ namespace ApiJwtEFInMemory.Controllers
         public UsuariosController(IUsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
+        }
+
+        [HttpGet]
+        public IEnumerable<Usuario> Get()
+        {
+            return _usuarioService.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -31,6 +39,7 @@ namespace ApiJwtEFInMemory.Controllers
         public IActionResult Post([FromBody]Usuario usuario)
         {
             _usuarioService.Add(usuario);
+            _usuarioService.Commit();
             return Ok(usuario);
         }
 
@@ -38,6 +47,7 @@ namespace ApiJwtEFInMemory.Controllers
         public IActionResult Put([FromBody]Usuario usuario)
         {
             _usuarioService.Update(usuario);
+            _usuarioService.Commit();
             return Ok(usuario);
         }
 
@@ -45,7 +55,10 @@ namespace ApiJwtEFInMemory.Controllers
         public IActionResult Delete([FromRoute] string id,[FromBody] Usuario usuario)
         {
             if (id == usuario.ID && _usuarioService.Remove(usuario))
+            {
+                _usuarioService.Commit();
                 return Ok();
+            }
             else
                 return NotFound();
         }

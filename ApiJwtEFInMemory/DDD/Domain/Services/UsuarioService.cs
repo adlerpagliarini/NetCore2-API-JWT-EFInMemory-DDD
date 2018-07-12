@@ -1,6 +1,7 @@
 ﻿using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
 using ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories;
 using ApiJwtEFInMemory.DDD.Domain.Entities;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces;
 
 namespace ApiJwtEFInMemory.DDD.Domain.Services
 {
@@ -8,7 +9,7 @@ namespace ApiJwtEFInMemory.DDD.Domain.Services
     {
         public readonly IUsuarioRepository _usuarioRepository;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository) : base(usuarioRepository)
+        public UsuarioService(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository) : base(unitOfWork, usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
         }

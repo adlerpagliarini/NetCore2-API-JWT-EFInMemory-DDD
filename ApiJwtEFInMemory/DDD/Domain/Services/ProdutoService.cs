@@ -3,6 +3,7 @@ using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
 using ApiJwtEFInMemory.DDD.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces;
 
 namespace ApiJwtEFInMemory.DDD.Domain.Services
 {
@@ -10,7 +11,7 @@ namespace ApiJwtEFInMemory.DDD.Domain.Services
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public ProdutoService(IProdutoRepository produtoRepository) : base(produtoRepository)
+        public ProdutoService(IUnitOfWork unitOfWork, IProdutoRepository produtoRepository) : base(unitOfWork, produtoRepository)
         {
             _produtoRepository = produtoRepository;
         }
@@ -35,5 +36,6 @@ namespace ApiJwtEFInMemory.DDD.Domain.Services
 
             return true;
         }
+
     }
 }

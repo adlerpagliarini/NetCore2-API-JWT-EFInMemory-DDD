@@ -3,6 +3,7 @@ using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
 using ApiJwtEFInMemory.DDD.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces;
 
 namespace ApiJwtEFInMemory.Controllers
 {
@@ -38,6 +39,7 @@ namespace ApiJwtEFInMemory.Controllers
         public IActionResult Post([FromBody]Produto produto)
         {
             _produtoService.Add(produto);
+            _produtoService.Commit();
             return Ok(produto);
         }
 
@@ -45,6 +47,7 @@ namespace ApiJwtEFInMemory.Controllers
         public IActionResult Put([FromBody]Produto produto)
         {
             _produtoService.Update(produto);
+            _produtoService.Commit();
             return Ok(produto);
         }
 
@@ -52,7 +55,10 @@ namespace ApiJwtEFInMemory.Controllers
         public IActionResult Delete(string codigoBarras)
         {
             if (_produtoService.Remove(codigoBarras))
+            {
+                _produtoService.Commit();
                 return Ok();
+            }                
             else
                 return NotFound();
         }

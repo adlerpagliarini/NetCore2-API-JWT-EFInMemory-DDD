@@ -9,6 +9,6 @@ namespace ApiJwtEFInMemory.DDD.Domain.Interfaces.Services
         IEnumerable<TEntity> GetAll();
         void Update(TEntity obj);
         void Remove(TEntity obj);
-        void Dispose();
+        int Commit();
     }
 }

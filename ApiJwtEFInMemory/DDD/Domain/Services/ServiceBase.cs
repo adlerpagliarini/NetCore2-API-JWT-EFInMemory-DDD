@@ -1,16 +1,20 @@
-﻿using ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories;
+﻿
+using ApiJwtEFInMemory.DDD.Domain.Entities;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories;
 using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services;
-using System;
 using System.Collections.Generic;
 
 namespace ApiJwtEFInMemory.DDD.Domain.Services
 {
-    public class ServiceBase<TEntity> : IDisposable, IServiceBase<TEntity> where TEntity : class
+    public class ServiceBase<TEntity> : IServiceBase<TEntity> where TEntity : class
     {
-        public IRepositoryBase<TEntity> _repository { get; }
+        protected IUnitOfWork _unitOfWork { get; }
+        protected IRepositoryBase<TEntity> _repository { get; }
 
-        public ServiceBase(IRepositoryBase<TEntity> repository)
+        public ServiceBase(IUnitOfWork unitOfWork, IRepositoryBase<TEntity> repository)
         {
+            _unitOfWork = unitOfWork;
             _repository = repository;
         }
         public virtual void Add(TEntity obj)
@@ -38,9 +42,6 @@ namespace ApiJwtEFInMemory.DDD.Domain.Services
             _repository.Update(obj);
         }
 
-        public virtual void Dispose()
-        {
-            _repository.Dispose();
-        }
+        public virtual int Commit() { return _unitOfWork.Commit(); }
     }
 }

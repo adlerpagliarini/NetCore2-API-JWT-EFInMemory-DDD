@@ -14,6 +14,9 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces.Services.Facedes;
+using ApiJwtEFInMemory.DDD.Domain.Services.Facedes;
 
 namespace ApiJwtEFInMemory
 {
@@ -43,13 +46,16 @@ namespace ApiJwtEFInMemory
             services.AddDbContext<DataContext>(options =>
                 options.UseInMemoryDatabase("InMemoryDatabase"));
 
-            services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
-            services.AddScoped<IProdutoService, ProdutoService>();
-            services.AddScoped<IUsuarioService, UsuarioService>();
-
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
+            services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IUsuarioProdutoService, UsuarioProdutoService>();
 
             //JWT
             var signingConfigurations = new SigningConfigurations();
@@ -97,9 +103,15 @@ namespace ApiJwtEFInMemory
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IUsuarioService usrService)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IUsuarioProdutoService services)
         {
-            usrService.Add(new Usuario() { ID = "admin", ChaveAcesso = "admin01" });
+            //usrService.Add(new Usuario() { ID = "admin", ChaveAcesso = "admin01" });
+            //unitOfWork.UsuarioRepository.Add(new Usuario() { ID = "admin1", ChaveAcesso = "admin01" });
+            //unitOfWork.Commit();
+            var u = new Usuario() { ID = "admin", ChaveAcesso = "admin01" };
+            services.UsuarioService.Add(u);
+            services.ProdutoService.Add(new Produto() { Nome = "produto", CodigoBarras = "123", Preco = 1, UsuarioId = u.ID });
+            services.Commit();
 
             if (env.IsDevelopment())
             {

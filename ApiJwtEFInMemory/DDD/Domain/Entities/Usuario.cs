@@ -1,4 +1,7 @@
-﻿namespace ApiJwtEFInMemory.DDD.Domain.Entities
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace ApiJwtEFInMemory.DDD.Domain.Entities
 {
     public class Usuario
     {
@@ -6,6 +9,12 @@
         public string ID { get; set; }
         public string ChaveAcesso { get; set; }
 
+        public virtual ICollection<Produto> Produtos { get; set; }
+
+        public Usuario()
+        {
+            Produtos = new Collection<Produto>();
+        }
         public bool Equals(Usuario other)
         {
             if (other is null)

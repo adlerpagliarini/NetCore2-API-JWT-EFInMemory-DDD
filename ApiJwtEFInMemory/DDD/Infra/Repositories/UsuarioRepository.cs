@@ -1,20 +1,19 @@
 ﻿using ApiJwtEFInMemory.DDD.Domain.Interfaces.Repositories;
 using ApiJwtEFInMemory.DDD.Domain.Entities;
 using ApiJwtEFInMemory.DDD.Infra.Context;
+using ApiJwtEFInMemory.DDD.Domain.Interfaces;
 
 namespace ApiJwtEFInMemory.DDD.Infra.Repositories
 {
     public class UsuarioRepository : RepositoryBase<Usuario>, IUsuarioRepository
     {
-        private readonly DataContext _context;
-        public UsuarioRepository(DataContext context) : base(context)
+        public UsuarioRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _context = context;
         }
 
         public Usuario GetById(string id)
         {
-            return Context.Set<Usuario>().Find(id);
+            return UnitOfWork.Set<Usuario>().Find(id);
         }
     }
 }

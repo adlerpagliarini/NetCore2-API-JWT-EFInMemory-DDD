@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -17,7 +18,13 @@ namespace ConsumingApiJwt
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            UsuarioRequest();
+            // Teste CadastrarUsuario();
 
+        }
+
+        private static void UsuarioRequest()
+        {
             var builder = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile($"appsettings.json");
@@ -76,5 +83,48 @@ namespace ConsumingApiJwt
 
             Console.ReadKey();
         }
+
+        private static void CadastrarUsuario()
+        {
+            var builder = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile($"appsettings.json");
+            var config = builder.Build();
+
+            _urlBase = config.GetSection("API_Access:UrlBase").Value;
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = client.PostAsync(
+                     _urlBase + "usuarios", new StringContent(
+                         JsonConvert.SerializeObject(new
+                         {
+                             ID = "adminId",
+                             ChaveAcesso = "key"
+                         }), Encoding.UTF8, "application/json")).Result;
+
+                Console.WriteLine();
+                if (response.StatusCode == HttpStatusCode.OK)
+                    Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+                else
+                    Console.WriteLine("Falha no post!");
+
+                Console.ReadKey();
+            }
+
+            Console.WriteLine("\nFinalizado!");
+            Console.ReadKey();
+        }
     }
 }
+/*
+var pairs = new List<KeyValuePair<string, string>>
+{
+    new KeyValuePair<string, string>("id", "id"),
+    new KeyValuePair<string, string>("chaveAcesso", "chave")
+};
+var content = new FormUrlEncodedContent(pairs);
+*/
